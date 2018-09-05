@@ -10,6 +10,11 @@
 ## About
 
 This repository is an exercise in Laravel, 
-a simple blog platform utilizing Laravel's native user authorization
-which allows to register and account, create, edit and delete posts.
+a simple blog platform utilizing Laravel's native user authentication
+which allows to register an account, create, edit and delete posts.
 
+Forms are created with the help of Laravel Collective package, and 
+users are able to format post text thanks to Unisharp Laravel ckeditor package, 
+which adds text format icons to the form text area.
+
+There's also an option to upload images to posts.
