@@ -64,7 +64,8 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        // file has to be image type, eg. jpeg, gif etc., nullable = optional so that user doesn't have to add image
+        // file has to be image type, eg. jpeg, gif etc.
+        //nullable which means optional so that user doesn't have to add image
         // and we set max size to 1999
         $this->validate($request, [
             'title' => 'required',
@@ -147,6 +148,8 @@ class PostsController extends Controller
             'body' => 'required'
         ]);
 
+        $post = Post::find($id);
+
         // Handle file upload
         if ($request->hasFile('cover_image')){
             // Get file name with the extension
@@ -161,12 +164,17 @@ class PostsController extends Controller
             // File name to store
             $fileNameToStore = $fileName.'_'.time().'.'.$extension;
 
-            // Upload image
+            // Delete old image if there was one
+            if ($post->cover_image !== 'noimage.jpg'){
+                // Delete image
+                Storage::delete('public/cover_images/' . $post->cover_image);
+            }
+
+            // Upload new image
             $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         }
 
         // Update Post
-        $post = Post::find($id);
         $post->title = $request->input('title');
         $post->body = $request->input('body');
         if ($request->hasFile('cover_image')){
