@@ -13,6 +13,6 @@ class Post extends Model
 
     public function comment()
     {
-        return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment')->orderBy('created_at','desc');
     }
 }
