@@ -38,6 +38,11 @@ Route::get('/users/{id}/{name}', function ($id, $name) {
 
 //through ::resource syntax I get all PostController routes instead of adding new entry for each one
 Route::resource('posts', 'PostsController');
+
+Route::get('comments/create/{id}', 'CommentsController@create');
+
+Route::post('comments/store', 'CommentsController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
