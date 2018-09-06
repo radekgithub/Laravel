@@ -21,4 +21,16 @@
             {!! Form::close() !!}
         @endif
     @endif
+    <h3>Comments</h3>
+    <p><a href="/comments/create" class="btn btn-success">Add Comment</a></p>
+    @if( count($post->comment) > 0)
+        @foreach($post->comment as $comment)
+            <div class="well">
+            <p><small>Written on {{ $comment->created_at }} by {{ $comment->user->name }}</small></p>
+            <p>{{ $comment->body }}</p>
+            </div>
+        @endforeach
+    @else
+        <p>There are no comments for this post yet.</p>
+    @endif
 @endsection
