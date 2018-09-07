@@ -22,7 +22,9 @@
         @endif
     @endif
     <h3>Comments</h3>
-    <p><a href="/comments/create/{{ $post->id }}" class="btn btn-success">Add Comment</a></p>
+    @if(!Auth::guest())
+        <p><a href="/comments/create/{{ $post->id }}" class="btn btn-success">Add Comment</a></p>
+    @endif
     @if( count($post->comment) > 0)
         @foreach($post->comment as $comment)
             <div class="well">
