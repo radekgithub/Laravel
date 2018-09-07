@@ -205,6 +205,8 @@ class PostsController extends Controller
             Storage::delete('public/cover_images/' . $post->cover_image);
         }
 
+        // Delete post comments using hasMany relation in Post model comment() method
+        $post->comment()->delete();
         $post->delete();
 
         return redirect('/posts')->with('success', 'Posts Removed');
