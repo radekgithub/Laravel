@@ -116,6 +116,22 @@ class PostsController extends Controller
         return view('posts.show')->with('post', $post);
     }
 
+
+    /**
+     * Display posts by user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showPostsByUser($id)
+    {
+        $posts =  Post::where('user_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('posts.posts_by_user')->with('posts', $posts);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
