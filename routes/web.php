@@ -48,3 +48,5 @@ Route::post('comments/store', 'CommentsController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
